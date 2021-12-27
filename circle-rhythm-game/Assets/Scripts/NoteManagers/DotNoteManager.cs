@@ -57,9 +57,9 @@ public class DotNoteManager : MonoBehaviour
     //         SpawnBufferNote();
     // }
 
-    private void ReturnNote(Note note)
+    private void ReturnNote(DotNote note)
     {
-        pool.Return(note as DotNote);
+        pool.Return(note);
     }
     
     // public void BufferNextNote(ChartSO.SpawnInfo info)

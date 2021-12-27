@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class DotNote : Note
 {
-    protected virtual float[] JudgementRange => new[] { .1f, .25f, .35f, .5f };
-
-    private void OnEnable()
+    protected override float[] judgementRange => new[] { .1f, .25f, .35f};
+    
+    protected override void OnEnable()
     {
-        startTime = Time.time;
-        transform.position = Position(0);
+        base.OnEnable();
+        nodeType = NoteType.Dot;
     }
 
-    private void FixedUpdate()
+    protected override void UpdateVisual(float timeLapsed)
     {
-        transform.position = Position(Time.time - startTime);
+        transform.position = Position(timeLapsed);
     }
 }

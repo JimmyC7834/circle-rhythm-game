@@ -6,12 +6,12 @@ using UnityEngine.Events;
 namespace Game
 {
     [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
-    public class InputReader : ScriptableObject, GameInput.IPlayerInputActions//, GameInput.IMenusActions
+    public class InputReader : ScriptableObject, GameInput.IGamePlayActions//, GameInput.IMenusActions
     {
         // Pointer
-        public event UnityAction<Vector2> moveEvent = delegate { };
-        public event UnityAction confirmEvent = delegate { };
-        public event UnityAction cancelEvent = delegate { };
+        public event UnityAction dotHitEvent = delegate { };
+        public event UnityAction dotReleaseEvent = delegate { };
+        public event UnityAction circleHitEvent = delegate { };
 
         // Menus
         // public event UnityAction<Vector2> menuMoveSelectionEvent = delegate { };
@@ -25,7 +25,7 @@ namespace Game
             if (gameInput == null) {
                 gameInput = new GameInput();
 
-                gameInput.PlayerInput.SetCallbacks(this);
+                gameInput.GamePlay.SetCallbacks(this);
                 // gameInput.Menus.SetCallbacks(this);
             }
 
@@ -40,13 +40,27 @@ namespace Game
         public void OnNormalHit(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
-                confirmEvent.Invoke();
+            {
+                // Debug.Log($"{context}");
+                if ((int)context.ReadValue<float>() == 1)
+                {
+                    dotHitEvent.Invoke();
+                    // Debug.Log("dotHitEvent");
+                    return;
+                }
+                
+                dotReleaseEvent.Invoke();
+                // Debug.Log("dotReleaseEvent");
+            }
         }
 
-        public void OnSpaceHit(InputAction.CallbackContext context)
+        public void OnCircleHit(InputAction.CallbackContext context)
         {
             if (context.phase == InputActionPhase.Performed)
-                confirmEvent.Invoke();
+            {
+                circleHitEvent.Invoke();
+                // Debug.Log("OnCircleHit");
+            }
         }
 
         // -----MENUS-----
@@ -71,7 +85,7 @@ namespace Game
         public void EnablePlayerInput() {
             // gameInput.Menus.Disable();
 
-            gameInput.PlayerInput.Enable();
+            gameInput.GamePlay.Enable();
         }
 
         // public void EnableMenusInput() {
@@ -81,7 +95,7 @@ namespace Game
         // }
 
         public void DisableAllInput() {
-            gameInput.PlayerInput.Disable();
+            gameInput.GamePlay.Disable();
             // gameInput.Menus.Disable();
         }
     }

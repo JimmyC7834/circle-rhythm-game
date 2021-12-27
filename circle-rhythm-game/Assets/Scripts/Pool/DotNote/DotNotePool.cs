@@ -16,5 +16,5 @@ public class DotNotePool : Game.Framework.Pool.ComponentPoolSO<DotNote>
         return newNote;
     }
 
-    public override IFactory<DotNote> Factory { get => factory as IFactory<DotNote>; set => factory = value as DotNoteFactory; }
+    public override IFactory<DotNote> Factory { get => factory; set => factory = value as DotNoteFactory; }
 }

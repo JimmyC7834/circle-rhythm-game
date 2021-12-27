@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CircleNoteFactory : MonoBehaviour
+[CreateAssetMenu(menuName = "Factory/CircleNote")]
+public class CircleNoteFactory : Game.Framework.Factory.FactorySO<CircleNote>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject prefab;
+    
+    public override CircleNote Create()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return Instantiate(prefab).GetComponent<CircleNote>();
     }
 }

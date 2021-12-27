@@ -1,18 +1,22 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Game;
 using UnityEngine;
 
 public class JudgementIconAnimator : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Animator animator;
+    [SerializeField] private InputReader input;
+
+    private void Awake()
     {
-        
+        input.dotHitEvent += PlayHitAnimation;
+        input.circleHitEvent += PlayHitAnimation;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void PlayHitAnimation()
     {
-        
+        animator.Play("HitAnim");
     }
 }

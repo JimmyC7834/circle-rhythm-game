@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class GamePlayManager : MonoBehaviour
 {
-    [SerializeField] private NoteManager noteManager;
+    [SerializeField] private ChartReader chartReader;
     [SerializeField] private ChartSO chart;
 
     private void Awake()
@@ -16,7 +16,7 @@ public class GamePlayManager : MonoBehaviour
 
     private void InitializeGamePlay()
     {
-        noteManager.LoadChart(chart);
-        noteManager.StartChart();
+        chartReader.LoadChart(chart);
+        chartReader.StartChart();
     }
 }

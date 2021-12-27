@@ -6,39 +6,56 @@ using UnityEngine;
 public class Note : MonoBehaviour
 {
     public enum JudgementGrade { Perfect, Great, Good, Miss, Count }
-    public float idealTime;
-    protected float radius = 6f;
-    protected float angle;
-    protected float startTime;
-    protected float speed;
-    protected float angleSpeed;
+    public enum NoteType { Dot, Long, Circle }
+    [SerializeField] protected float idealTime;
+    [SerializeField] protected float radius = 6f;
+    [SerializeField] protected float angle;
+    [SerializeField] protected float startTime;
+    [SerializeField] protected float speed;
+    [SerializeField] protected float deltaAngle;
 
-    public float Radius(float timeLapsed) => Mathf.Max(0, radius - speed * timeLapsed);
-    public float Theta(float timeLapsed) => angle - angleSpeed * timeLapsed;
-    public Vector2 Position(float timeLapsed) => new Vector2(
+    protected float Radius(float timeLapsed) => Mathf.Max(0, radius - speed * timeLapsed);
+    protected float Theta(float timeLapsed) =>  Mathf.Lerp(angle, angle + deltaAngle, Radius(timeLapsed)/radius);
+    protected Vector2 Position(float timeLapsed) => new Vector2(
         Mathf.Cos(Theta(timeLapsed) * Mathf.Deg2Rad) * Radius(timeLapsed), 
         Mathf.Sin(Theta(timeLapsed) * Mathf.Deg2Rad) * Radius(timeLapsed)
     );
 
-    public void Initialize(ChartSO.SpawnInfo info) => Initialize(info.idealTime, info.angle, info.speed, info.angleSpeed);
-    public void Initialize(float idealTime, float angle, float speed, float angleSpeed)
+    public virtual float spawnTime => idealTime - radius / speed;
+    protected virtual float[] judgementRange => new[] { .1f, .25f, .35f};
+    [HideInInspector] public NoteType nodeType;
+
+    protected virtual void OnEnable()
+    {
+        startTime = Time.time;
+    }
+
+    public virtual void Initialize(ChartSO.SpawnInfo info) => Initialize(info.idealTime, info.angle, info.speed, info.deltaAngle);
+    public void Initialize(float idealTime, float angle, float speed, float deltaAngle)
     {
         this.idealTime = idealTime;
         this.angle = angle;
         this.speed = speed;
-        this.angleSpeed = angleSpeed;
+        this.deltaAngle = deltaAngle;
+        UpdateVisual(0f);
     }
 
-    protected virtual float[] JudgementRange => new[] { .1f, .25f, .35f, .5f };
+
+    private void Update() => UpdateVisual(Time.time - startTime);
     
-    public JudgementGrade GetGradeAtTime(float time)
+    protected virtual void UpdateVisual(float timeLapsed) { }
+    
+    public bool InJudgementRange(float chartTime)
     {
-        // clamps the offset between late miss and fast good
-        // float offset = Mathf.Clamp(idealTime - time, -JudgementRange[(int)JudgementGrade.Count - 1],JudgementRange[(int)JudgementGrade.Count - 2]);
-        float offset = idealTime - time;
-        for(int i = 0; i < (int) JudgementGrade.Count; i++)
+        return idealTime - chartTime < judgementRange[(int) JudgementGrade.Count - 2];
+    }
+    
+    public virtual JudgementGrade GetGradeAtTime(float chartTime)
+    {
+        float offset = idealTime - chartTime;
+        for(int i = 0; i < (int) JudgementGrade.Count - 1; i++)
         {
-            if (Mathf.Abs(offset) < JudgementRange[i])
+            if (Mathf.Abs(offset) < judgementRange[i])
                 return (JudgementGrade) i;
         }
 

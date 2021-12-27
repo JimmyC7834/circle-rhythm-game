@@ -1,18 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class LongNoteFactory : MonoBehaviour
+[CreateAssetMenu(menuName = "Factory/LongNote")]
+public class LongNoteFactory : Game.Framework.Factory.FactorySO<LongNote>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject prefab;
+    
+    public override LongNote Create()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        return Instantiate(prefab).GetComponent<LongNote>();
     }
 }

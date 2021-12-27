@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Framework.Factory;
 using UnityEngine;
 
-public class CircleNotePool : MonoBehaviour
+[CreateAssetMenu(menuName = "Pool/CircleNote")]
+public class CircleNotePool : Game.Framework.Pool.ComponentPoolSO<CircleNote>
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private CircleNoteFactory factory;
+
+    public CircleNote Request(ChartSO.SpawnInfo info)
     {
-        
+        CircleNote newNote = base.Request();
+        newNote.Initialize(info);
+        return newNote;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public override IFactory<CircleNote> Factory { get => factory; set => factory = value as CircleNoteFactory; }
 }

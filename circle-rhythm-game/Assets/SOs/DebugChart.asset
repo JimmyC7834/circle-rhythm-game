@@ -15,19 +15,23 @@ MonoBehaviour:
   bpm: 222
   radius: 6
   spawnInfos:
-  - idealTime: 3
+  - noteType: 0
+    idealTime: 3
     angle: 0
     speed: 4
-    angleSpeed: 0
-  - idealTime: 4
+    deltaAngle: 360
+  - noteType: 2
+    idealTime: 4
     angle: 90
     speed: 4
-    angleSpeed: 10
-  - idealTime: 5
+    deltaAngle: -90
+  - noteType: 0
+    idealTime: 5
     angle: 180
     speed: 4
-    angleSpeed: 0
-  - idealTime: 6
+    deltaAngle: 90
+  - noteType: 0
+    idealTime: 6
     angle: 270
     speed: 4
-    angleSpeed: 0
+    deltaAngle: -90

@@ -3,10 +3,10 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Factory/DotNote")]
 public class DotNoteFactory : Game.Framework.Factory.FactorySO<DotNote>
 {
-    [SerializeField] private GameObject dotNote;
+    [SerializeField] private GameObject prefab;
     
     public override DotNote Create()
     {
-        return (Instantiate(dotNote) as GameObject).GetComponent<DotNote>();
+        return Instantiate(prefab).GetComponent<DotNote>();
     }
 }

@@ -2,20 +2,20 @@
     "name": "GameInput",
     "maps": [
         {
-            "name": "PlayerInput",
+            "name": "GamePlay",
             "id": "1f27b624-ff3b-4197-8864-4732d6571e7d",
             "actions": [
                 {
                     "name": "NormalHit",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "7df4f59f-75d5-4deb-bf8a-9d37f2779583",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Touch",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SpaceHit",
+                    "name": "CircleHit",
                     "type": "Button",
                     "id": "903e7dc4-b5ce-46b3-b868-0fdf576946b2",
                     "expectedControlType": "Button",
@@ -27,8 +27,19 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "68467db2-8c77-410b-a8c7-165dd7787701",
-                    "path": "<Keyboard>/anyKey",
+                    "id": "a3f038ab-65e0-44ba-9c19-b6764dc439cf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CircleHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "dcd184fe-29f4-4400-b3b8-bb443e98cdce",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -38,12 +49,78 @@
                 },
                 {
                     "name": "",
-                    "id": "a3f038ab-65e0-44ba-9c19-b6764dc439cf",
-                    "path": "<Keyboard>/space",
+                    "id": "ec742a2b-6f29-4062-8ef0-4a03c5c32e62",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SpaceHit",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c525e58c-18f0-4464-aa60-cb53ed1fef3d",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48f51eea-98f1-4a0d-b635-c565949340d7",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "631e927e-fa6e-4ca8-8c91-fc41cbf3c1b7",
+                    "path": "<Keyboard>/h",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "14090fe6-13ca-49e6-b67e-b5dfa2f86a14",
+                    "path": "<Keyboard>/j",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "40f48ddd-c10b-41a3-a681-51fa6e6a128e",
+                    "path": "<Keyboard>/k",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2688f3a0-7c3e-4a69-9603-c8a3c1bc45de",
+                    "path": "<Keyboard>/l",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
