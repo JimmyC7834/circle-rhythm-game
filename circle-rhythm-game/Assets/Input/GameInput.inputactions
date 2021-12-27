@@ -1,0 +1,54 @@
+{
+    "name": "GameInput",
+    "maps": [
+        {
+            "name": "PlayerInput",
+            "id": "1f27b624-ff3b-4197-8864-4732d6571e7d",
+            "actions": [
+                {
+                    "name": "NormalHit",
+                    "type": "Button",
+                    "id": "7df4f59f-75d5-4deb-bf8a-9d37f2779583",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SpaceHit",
+                    "type": "Button",
+                    "id": "903e7dc4-b5ce-46b3-b868-0fdf576946b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "68467db2-8c77-410b-a8c7-165dd7787701",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NormalHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3f038ab-65e0-44ba-9c19-b6764dc439cf",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SpaceHit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
